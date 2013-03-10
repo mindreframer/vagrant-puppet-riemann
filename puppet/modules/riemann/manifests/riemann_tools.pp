@@ -4,5 +4,5 @@
 
 class riemann::riemann_tools{
   include riemann::params
-  -> package{'riemann-tools': provider => 'gem'}
+  package{'riemann-tools': provider => 'gem'}
 }

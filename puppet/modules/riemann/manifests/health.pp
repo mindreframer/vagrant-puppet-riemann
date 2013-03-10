@@ -48,13 +48,13 @@ class riemann::health::initd_config{
   include riemann::params
   file{"/etc/init.d/riemann-health":
     content => template("riemann/initd_riemann_health.erb"),
-    mode => 755
+    mode    => 0755
   }
 }
 
 class riemann::health::initd_service{
   service{"riemann-health":
-    ensure   => running,
+    ensure    => running,
     subscribe => Class['riemann::health::initd_config']
   }
 }

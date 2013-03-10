@@ -15,7 +15,7 @@ PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
 pidfile=/var/run/riemann-health.pid
 progname='riemann-health'
 binpath=`which riemann-health`
-riemann_host='FIXME'
+riemann_host='<%= scope.lookupvar('riemann::params::riemann_server_ip') %>'
 
 test -f $binpath || exit 0
 . /lib/lsb/init-functions
