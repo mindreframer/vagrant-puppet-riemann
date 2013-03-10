@@ -1,0 +1,50 @@
+#! /bin/sh
+# /etc/init.d/riemann-health
+
+### BEGIN INIT INFO
+# Provides:             riemann-health reporter
+# Required-Start:       $syslog
+# Required-Stop:        $syslog
+# Default-Start:        2 3 4 5
+# Default-Stop:         1
+# Short-Description:    riemann-health
+### END INIT INFO
+
+PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
+
+pidfile=/var/run/riemann-health.pid
+progname='riemann-health'
+binpath=`which riemann-health`
+riemann_host='FIXME'
+
+test -f $binpath || exit 0
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+    log_begin_msg "Starting $progname daemon..."
+
+    # start $progname as non-root with reading from kmsgpipe
+    start-stop-daemon --start --make-pidfile --pidfile $pidfile --background --quiet --chuid daemon --exec $binpath -- --host $riemann_host
+    log_end_msg $?
+    ;;
+  stop)
+    log_begin_msg "Stopping $progname daemon..."
+    start-stop-daemon --stop --retry 3 --oknodo --pidfile $pidfile
+    rm -f $pidfile
+    log_end_msg $?
+    ;;
+  restart)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  status)
+    status_of_proc -p $pidfile $binpath  && exit 0 || exit $?
+    ;;
+  *)
+    log_success_msg "Usage: /etc/init.d/$progname {start|stop|restart|status}"
+    exit 1
+esac
+
+exit 0
