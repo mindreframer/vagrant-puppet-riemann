@@ -1,3 +1,3 @@
-## Sandbox to play with Erlang and Elixir
+## Sandbox to play with Riemann
 
 
