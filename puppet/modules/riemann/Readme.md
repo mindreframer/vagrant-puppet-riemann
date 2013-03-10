@@ -13,3 +13,6 @@ Riemann aggregates events from your servers and applications with a powerful str
 - riemann::dashboard: WEB GUI
 - riemann::health: daemon, that reports health to riemann
 - riemann::riemann_tools: a set of tools for riemann
+
+## Introduction Videos:
+  - http://vimeo.com/45807716 (Kyle Kingsbury (@aphyr) presents Riemann)
