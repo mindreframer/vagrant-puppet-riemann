@@ -2,47 +2,49 @@
   "server": "127.0.0.1:5556",
   "workspaces": [
     {
-      "name": "Riemann",
+      "name": "First",
       "id": "460d59f498ce7f88925d14c7be88295953a86e7c",
       "view": {
-        "weight": 1,
-        "type": "Balloon",
         "child": {
+          "type": "VStack",
+          "weight": 1,
           "children": [
             {
-              "title": "Main",
+              "type": "Title",
               "weight": 1,
-              "type": "Title"
+              "title": "Hello"
             },
             {
               "type": "Help"
             }
-          ],
-          "weight": 1,
-          "type": "VStack"
-        }
+          ]
+        },
+        "type": "Balloon",
+        "weight": 1
       }
     },
     {
       "name": "Second",
       "id": "2aac981a80df0eeef8612fb0f3302270cab42bea",
       "view": {
-        "weight": 1,
-        "type": "Balloon",
         "child": {
+          "type": "VStack",
+          "weight": 1,
           "children": [
             {
-              "title": "Second",
+              "type": "Grid",
+              "query": "'(tagged = \"prod\" and tagged = \"webserver\")'",
               "weight": 1,
-              "type": "Title"
+              "max": "all",
+              "title": "prod web servers"
             },
             {
               "type": "Help"
             }
-          ],
-          "weight": 1,
-          "type": "VStack"
-        }
+          ]
+        },
+        "type": "Balloon",
+        "weight": 1
       }
     }
   ]
