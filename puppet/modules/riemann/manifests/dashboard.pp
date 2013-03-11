@@ -11,7 +11,7 @@ class riemann::dashboard::dependencies{
 }
 
 class riemann::dashboard::package{
-  package{'riemann-dash': ensure => 'installed', provider => 'gem'}
+  package{'mindreframer-riemann-dash': ensure => '0.2.3', provider => 'gem'}
 }
 
 class riemann::dashboard::config{
