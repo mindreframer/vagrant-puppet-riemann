@@ -4,6 +4,7 @@
 
 (tcp-server :host "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>" :port 5555)
 (udp-server :host "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>" :port 5555)
+(ws-server :host "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>" :port 5556)
 
 (periodically-expire 10)
 
