@@ -15,16 +15,22 @@ class riemann::dashboard::package{
 }
 
 class riemann::dashboard::config{
-  file{"/srv/riemann-dash":
+  file{
+    ["/srv/riemann-dash", "/srv/riemann-dash/config"]:
     ensure => directory,
   }
 
-  file{"/srv/riemann-dash/config.rb":
-    content => template("riemann/riemann-dash-config.rb.erb"),
+  -> file{"/srv/riemann-dash/config.rb":
+    content => template("riemann/dashboard/config.rb.erb"),
     owner => riemann, group => riemann, mode => 666
   }
 
-  file{"/etc/init/riemann-dash.conf":
+  -> file{"/srv/riemann-dash/config/config.json":
+    content => template("riemann/dashboard/config.json.erb"),
+    owner => riemann, group => riemann, mode => 666
+  }
+
+  -> file{"/etc/init/riemann-dash.conf":
     content => template("riemann/upstart_riemann_dash.conf")
   }
 
