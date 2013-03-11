@@ -55,7 +55,7 @@ class basic::helpers{
 # brings the system up-to-date after importing it with Vagrant
 # runs only once after booting (checks /tmp/apt-get-update existence)
 class basic::update_aptget{
-  exec{"apt-get update && touch /tmp/apt-get-updated":
-    unless => "test -e /tmp/apt-get-updated"
+  exec{"apt-get update && touch /var/tmp/apt-get-updated":
+    unless => "test -e /var/tmp/apt-get-updated"
   }
 }
