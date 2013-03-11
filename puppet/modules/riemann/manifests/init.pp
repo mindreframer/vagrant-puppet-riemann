@@ -1,10 +1,15 @@
 class riemann{
   ## include java
   include riemann::params
-  class {"riemann::user":}
+  class {"riemann::dependencies":}
+    -> class {'riemann::user':}
     -> class {'riemann::configs':}
     -> class {'riemann::download':}
     -> class {"riemann::service":}
+}
+
+class riemann::dependencies{
+  if ! defined(Package['wget'])    { package { 'wget': ensure => installed } }
 }
 
 class riemann::user{
