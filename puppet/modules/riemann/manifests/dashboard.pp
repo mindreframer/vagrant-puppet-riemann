@@ -1,8 +1,13 @@
 class riemann::dashboard{
   include riemann::params
-  class{"riemann::dashboard::package":}
+  class{"riemann::dashboard::dependencies":}
+    -> class{"riemann::dashboard::package":}
     -> class{"riemann::dashboard::config":}
     -> class{"riemann::dashboard::service":}
+}
+
+class riemann::dashboard::dependencies{
+  if ! defined(Package['build-essential'])    { package { 'build-essential': ensure => installed } }
 }
 
 class riemann::dashboard::package{
@@ -13,6 +18,7 @@ class riemann::dashboard::config{
   file{"/srv/riemann-dash":
     ensure => directory,
   }
+
   file{"/srv/riemann-dash/config.rb":
     content => template("riemann/riemann-dash-config.rb.erb"),
     owner => riemann, group => riemann, mode => 666
