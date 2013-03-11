@@ -1,3 +1,5 @@
+# https://gist.github.com/aaronfeng/4583640 (Application specific host grouping in Riemann-dash)
+
 class riemann::dashboard{
   include riemann::params
   class{"riemann::dashboard::dependencies":}
