@@ -25,6 +25,7 @@ class java::oracle::add_repo{
 
 # seem to require interactive input... :(
 # http://askubuntu.com/questions/190582/installing-java-automatically-with-silent-option
+# http://offbytwo.com/2011/07/20/scripted-installation-java-ubuntu.html
 class java::oracle::licence_accepted{
   exec{"java::oracle::licence_accepted":
     command => "echo debconf shared/accepted-oracle-license-v1-1 select true | \
