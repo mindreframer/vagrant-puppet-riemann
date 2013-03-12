@@ -34,6 +34,7 @@ This will install
     $ runpuppet
 
 ## Generate some events for Riemann (a rather naive approach, but you'll have some data to play with)
+    # open localhost:4567 in your browser
 
     # simulate health checks reports
     $ riemann-simulator -s health
