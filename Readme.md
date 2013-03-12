@@ -2,6 +2,8 @@
 
 
 
+
+
 This will install
   - Java 7 (Oracle)
   - Riemann server with basic configuration
@@ -9,6 +11,10 @@ This will install
   - Riemann Tools
   - Riemann Health Daemon, that will send every 10 seconds cpu/memory/load/disk status to Riemann server
   - Ports 5555 (riemann-server), 5556(UDP for riemann) and 4567 (dashboard) will be forwarded
+
+
+![Dashboard Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/dashboard_screenshot.png)
+
 
 
 ## Requirements
