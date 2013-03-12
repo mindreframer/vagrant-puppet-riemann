@@ -1,6 +1,6 @@
 class riemann::params{
-  #$riemann_server_ip = $::ipaddress_eth0 # just for vagrant, this would be a real ip
-  $riemann_server_ip = "127.0.0.1" # just for vagrant, this would be a real ip
+  $riemann_server_ip = $::ipaddress_eth0 # just for vagrant, this would be a real ip
+  #$riemann_server_ip = "127.0.0.1" # just for vagrant, this would be a real ip
   $user_id           = "2222" # a rather random id...
 
   #http://aphyr.com/riemann/riemann-0.1.5.tar.bz2
