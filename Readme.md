@@ -1,4 +1,4 @@
-# Sandbox to play with [Riemann] in [VirtualBox] with [Vagrant]
+# Sandbox with traffic simulator to play with [Riemann] in [VirtualBox] with [Vagrant]
 
 
 
@@ -46,6 +46,14 @@
 
     # simulate traffic
     $ riemann-simulator -s web
+
+
+## Playing with Dashboard
+
+    # press `?` to have the overview of available shortcuts
+
+![Dashboard Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/help_screenshot.png)
+
 
 
 [Vagrant]: http://vagrantup.com
