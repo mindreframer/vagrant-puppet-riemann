@@ -1,52 +1,80 @@
 {
-  "server": "127.0.0.1:5556",
   "workspaces": [
     {
-      "name": "First",
       "id": "460d59f498ce7f88925d14c7be88295953a86e7c",
       "view": {
+        "weight": 1,
         "child": {
-          "type": "VStack",
           "weight": 1,
+          "type": "VStack",
           "children": [
             {
-              "type": "Title",
               "weight": 1,
-              "title": "Hello"
+              "type": "View"
+            },
+            {
+              "weight": 1,
+              "type": "HStack",
+              "children": [
+                {
+                  "weight": 1,
+                  "type": "View"
+                },
+                {
+                  "weight": 1,
+                  "type": "VStack",
+                  "children": [
+
+                  ]
+                }
+              ]
             },
             {
               "type": "Help"
             }
           ]
         },
-        "type": "Balloon",
-        "weight": 1
-      }
+        "type": "Balloon"
+      },
+      "name": "welcome"
     },
     {
-      "name": "Second",
       "id": "2aac981a80df0eeef8612fb0f3302270cab42bea",
       "view": {
+        "weight": 1,
         "child": {
-          "type": "VStack",
           "weight": 1,
+          "type": "VStack",
           "children": [
             {
-              "type": "Grid",
-              "query": "'(tagged = \"prod\" and tagged = \"webserver\")'",
-              "weight": 3,
-              "max": "all",
-              "title": "Webserver(prod)"
-            },
-            {
-              "weight": 1,
-              "type": "Help"
+              "weight": 4,
+              "type": "HStack",
+              "children": [
+                {
+                  "weight": 1,
+                  "query": "'(tagged = \"prod\" and tagged = \"webserver\")'",
+                  "type": "Grid",
+                  "title": "Webserver(prod)",
+                  "max": "all"
+                },
+                {
+                  "weight": 1,
+                  "type": "VStack",
+                  "children": [
+                    {
+                      "weight": 1,
+                      "type": "View"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
-        "type": "Balloon",
-        "weight": 1
-      }
+        "type": "Balloon"
+      },
+      "name": "prod-servers"
     }
-  ]
+  ],
+  "server": "127.0.0.1:5556"
 }
