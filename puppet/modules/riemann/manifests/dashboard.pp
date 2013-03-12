@@ -33,7 +33,7 @@ class riemann::dashboard::config{
   }
 
   -> file{"/etc/init/riemann-dash.conf":
-    content => template("riemann/upstart_riemann_dash.conf")
+    content => template("riemann/dashboard/upstart.conf")
   }
 
   file{"/srv/riemann-dash/riemann-dash.log":

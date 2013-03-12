@@ -28,10 +28,10 @@ class riemann::configs{
     ensure => directory
   }
   -> file{"/etc/riemann/riemann.config":
-    content => template("riemann/riemann.config.erb"),
+    content => template("riemann/server/riemann.config.erb"),
   }
   -> file{"/etc/init/riemann.conf":
-    content => template("riemann/upstart_riemann.conf")
+    content => template("riemann/server/upstart.conf")
   }
   -> file{"/var/log/riemann.log":
     ensure => present,

@@ -31,7 +31,7 @@ class riemann::health::initd{
 class riemann::health::upstart_config{
   include riemann::params
   file{"/etc/init/riemann-health.conf":
-    content => template("riemann/upstart_riemann_health.conf")
+    content => template("riemann/health/upstart.conf")
   }
 }
 
@@ -47,7 +47,7 @@ class riemann::health::upstart_service{
 class riemann::health::initd_config{
   include riemann::params
   file{"/etc/init.d/riemann-health":
-    content => template("riemann/initd_riemann_health.erb"),
+    content => template("riemann/health/initd.erb"),
     mode    => 0755
   }
 }
