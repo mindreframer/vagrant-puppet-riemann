@@ -1,19 +1,18 @@
-# Sandbox to play with Riemann in [VirtualBox] with [Vagrant]
+# Sandbox to play with [Riemann] in [VirtualBox] with [Vagrant]
 
 
 
+![Dashboard Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/dashboard_screenshot.png)
 
 
-This will install
+### This will install and configure for you:
+
   - Java 7 (Oracle)
   - Riemann server with basic configuration
   - Riemann Dashboard with some pre-configured graphs
   - Riemann Tools
   - Riemann Health Daemon, that will send every 10 seconds cpu/memory/load/disk status to Riemann server
   - Ports 5555 (riemann-server), 5556(UDP for riemann) and 4567 (dashboard) will be forwarded
-
-
-![Dashboard Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/dashboard_screenshot.png)
 
 
 
@@ -51,3 +50,4 @@ This will install
 
 [Vagrant]: http://vagrantup.com
 [VirtualBox]: https://www.virtualbox.org/
+[Riemann]: http://riemann.io
