@@ -1,6 +1,6 @@
 class riemann::simulators{
-  file{"/usr/local/bin/riemann-web-traffic.rb":
-    content => template("riemann/simulators/webclients.rb.erb"),
+  file{"/usr/local/bin/riemann-simulator":
+    content => template("riemann/simulators/riemann-simulator.erb"),
     mode    => 0755
   }
 }
