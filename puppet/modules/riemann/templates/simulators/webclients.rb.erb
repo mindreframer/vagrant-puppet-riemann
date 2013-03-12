@@ -2,9 +2,6 @@
 require 'rubygems'
 require 'riemann/client'
 
-@client = Riemann::Client.new(:host => "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>")
-
-
 SERVERS = %w(www worker).map{|x| 1.upto(10).map do |i| "#{x}#{i.to_s.rjust(2, '0')}" end }.flatten
 
 # http://riemann.io/concepts.html
@@ -17,20 +14,39 @@ SERVERS = %w(www worker).map{|x| 1.upto(10).map do |i| "#{x}#{i.to_s.rjust(2, '0
 # tags  Freeform list of strings, e.g. ["rate", "fooproduct", "transient"]
 # metric  A number associated with this event, e.g. the number of reqs/sec.
 # ttl A floating-point time, in seconds, that this event is considered valid for. Expired states may be removed from the index.
-def send_stuff
-  metric = rand(5000)/100.0
-  state  = metric < 20 ? "ok" : (metric > 40 ?  "critical" : "warning")
-  @client << {
-    :host        => SERVERS[rand(SERVERS.size)],
-    :service     => "http req",
-    :metric      => metric,
-    :state       => state,
-    :description => "Request took #{metric} seconds.",
-    :tags        => ["prod", "webserver"]
-  }
+
+class Simulator
+  def self.client
+    @client ||= Riemann::Client.new(:host => "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>")
+  end
+
+  def self.web_traffic
+    10000.times do
+      send_web_request
+      sleep 0.1
+    end
+  end
+
+  def self.health_traffic
+
+  end
+
+  def self.send_web_request
+    metric = rand(5000)/100.0
+    state  = metric < 20 ? "ok" : (metric > 40 ?  "critical" : "warning")
+    client << {
+      :host        => SERVERS[rand(SERVERS.size)],
+      :service     => "http req",
+      :metric      => metric,
+      :state       => state,
+      :description => "Request took #{metric} seconds.",
+      :tags        => ["prod", "webserver"]
+    }
+  end
+
+  def self.send_health_request
+
+  end
 end
 
-10000.times do
-  send_stuff
-  sleep 0.1
-end
+Simulator.web_traffic
