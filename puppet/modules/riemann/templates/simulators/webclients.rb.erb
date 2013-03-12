@@ -2,9 +2,10 @@
 require 'rubygems'
 require 'riemann/client'
 
-@client = Riemann::Client.new
+@client = Riemann::Client.new(:host => "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>")
 
-SERVERS = ["www1", "www2", "www3", "worker1", "worker2", "worker3"]
+
+SERVERS = %w(www worker).map{|x| 1.upto(10).map do |i| "#{x}#{i.to_s.rjust(2, '0')}" end }.flatten
 
 # http://riemann.io/concepts.html
 
