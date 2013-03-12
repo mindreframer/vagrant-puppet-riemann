@@ -1,12 +1,13 @@
 {
+  "server": "127.0.0.1:5556",
   "workspaces": [
     {
       "id": "460d59f498ce7f88925d14c7be88295953a86e7c",
       "view": {
         "weight": 1,
+        "type": "Balloon",
         "child": {
           "weight": 1,
-          "type": "VStack",
           "children": [
             {
               "weight": 1,
@@ -14,7 +15,6 @@
             },
             {
               "weight": 1,
-              "type": "HStack",
               "children": [
                 {
                   "weight": 1,
@@ -22,19 +22,20 @@
                 },
                 {
                   "weight": 1,
-                  "type": "VStack",
                   "children": [
 
-                  ]
+                  ],
+                  "type": "VStack"
                 }
-              ]
+              ],
+              "type": "HStack"
             },
             {
               "type": "Help"
             }
-          ]
-        },
-        "type": "Balloon"
+          ],
+          "type": "VStack"
+        }
       },
       "name": "welcome"
     },
@@ -44,37 +45,51 @@
         "weight": 1,
         "child": {
           "weight": 1,
-          "type": "VStack",
           "children": [
             {
               "weight": 4,
-              "type": "HStack",
               "children": [
                 {
                   "weight": 1,
-                  "query": "'(tagged = \"prod\" and tagged = \"webserver\")'",
-                  "type": "Grid",
-                  "title": "Webserver(prod)",
-                  "max": "all"
+                  "children": [
+                    {
+                      "title": "Requests",
+                      "weight": 1,
+                      "max": "all",
+                      "query": "'(tagged = \"prod\" and tagged = \"webserver\")'",
+                      "type": "Grid"
+                    },
+                    {
+                      "title": "Disk & Memory",
+                      "weight": 0.25,
+                      "query": "((service =~ \"disk%\") or (service =~ \"memory%\")) and (state != \"ok\")",
+                      "type": "Gauge"
+                    }
+                  ],
+                  "type": "VStack"
                 },
                 {
                   "weight": 1,
-                  "type": "VStack",
                   "children": [
                     {
+                      "title": "Disk & Memory",
                       "weight": 1,
-                      "type": "View"
+                      "max": "all",
+                      "query": "((service =~ \"disk%\") or (service =~ \"memory%\")) and (state != \"ok\")",
+                      "type": "Grid"
                     }
-                  ]
+                  ],
+                  "type": "VStack"
                 }
-              ]
+              ],
+              "type": "HStack"
             }
-          ]
+          ],
+          "type": "VStack"
         },
         "type": "Balloon"
       },
       "name": "prod-servers"
     }
-  ],
-  "server": "127.0.0.1:5556"
+  ]
 }
