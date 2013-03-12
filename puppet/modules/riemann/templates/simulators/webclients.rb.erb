@@ -5,6 +5,17 @@ require 'riemann/client'
 @client = Riemann::Client.new
 
 SERVERS = ["www1", "www2", "www3", "worker1", "worker2", "worker3"]
+
+# http://riemann.io/concepts.html
+
+# host  A hostname, e.g. "api1", "foo.com"
+# service e.g. "API port 8000 reqs/sec"
+# state Any string less than 255 bytes, e.g. "ok", "warning", "critical"
+# time  The time of the event, in unix epoch seconds
+# description Freeform text
+# tags  Freeform list of strings, e.g. ["rate", "fooproduct", "transient"]
+# metric  A number associated with this event, e.g. the number of reqs/sec.
+# ttl A floating-point time, in seconds, that this event is considered valid for. Expired states may be removed from the index.
 def send_stuff
   metric = rand(5000)/100.0
   state  = metric < 20 ? "ok" : (metric > 40 ?  "critical" : "warning")
