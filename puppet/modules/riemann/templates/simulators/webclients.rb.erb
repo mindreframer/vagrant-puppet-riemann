@@ -1,9 +1,34 @@
 #!/usr/bin/env ruby
 require 'rubygems'
+require 'optparse'
+require 'pp'
 require 'riemann/client'
+require 'riemann/tools'
+
+
+options = {}
+
+optparse = OptionParser.new do|opts|
+  opts.on( '-h', '--help', 'Display this screen' ) do
+    puts opts
+    exit
+  end
+
+  options[:simulation] = ""
+  opts.on( '-s', '--simulation KIND', "Simulation Kind - health/web" ) do|f|
+    options[:simulation] = f
+  end
+
+  options[:requests] = 10000
+  opts.on( '-r', '--requests NUM', Integer, "how many requests", "defaults to #{options[:requests]}") do |f|
+    options[:requests] = f
+  end
+end
+optparse.parse!
+
 
 SERVERS = %w(www worker).map{|x| 1.upto(10).map do |i| "#{x}#{i.to_s.rjust(2, '0')}" end }.flatten
-
+REQUESTS_COUNT = options[:requests]
 # http://riemann.io/concepts.html
 
 # host  A hostname, e.g. "api1", "foo.com"
@@ -21,14 +46,17 @@ class Simulator
   end
 
   def self.web_traffic
-    10000.times do
+    REQUESTS_COUNT.times do
       send_web_request
       sleep 0.1
     end
   end
 
   def self.health_traffic
-
+    REQUESTS_COUNT.times do
+      send_health_request
+      sleep 0.1
+    end
   end
 
   def self.send_web_request
@@ -45,8 +73,50 @@ class Simulator
   end
 
   def self.send_health_request
+    [:cpu, :disk, :memory].each do |service|
+      report_pct service, (rand(100)+1)/100.0, ""
+    end
+    # cpu
+    # load
+    # disk
+    # memory
+  end
 
+  def self.limits
+    @limits ||= {
+      :cpu    => {:warning => 0.9, :critical => 0.95},
+      :disk   => {:warning => 0.9, :critical => 0.95},
+      :memory => {:warning => 0.85, :critical => 0.95},
+      :load   => {:warning => 3, :critical => 8}
+    }
+  end
+
+  def self.report_pct(service, fraction, report)
+    if fraction
+      if fraction > limits[service][:critical]
+        alert service, :critical, fraction, "#{sprintf("%.2f", fraction * 100)}% #{report}"
+      elsif fraction > limits[service][:warning]
+        alert service, :warning, fraction, "#{sprintf("%.2f", fraction * 100)}% #{report}"
+      else
+        alert service, :ok, fraction, "#{sprintf("%.2f", fraction * 100)}% #{report}"
+      end
+    end
+  end
+
+  def self.alert(service, state, metric, description)
+    client << {
+      :host        => SERVERS[rand(SERVERS.size)],
+      :service     => service.to_s,
+      :state       => state.to_s,
+      :metric      => metric.to_f,
+      :description => description
+    }
   end
 end
 
-Simulator.web_traffic
+case options[:simulation]
+  when "health" then Simulator.health_traffic
+  when "web"    then Simulator.web_traffic
+  else
+    puts "no matching simulation found, try web/health"
+end
