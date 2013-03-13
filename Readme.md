@@ -47,7 +47,6 @@
     # simulate traffic
     $ riemann-simulator -s web
 
-
     # simulate all traffic
     $ riemann-simulator
 
@@ -84,24 +83,19 @@
 
 ## Resources
 
-  [Riemann-Users Group]
+  **Riemann-Users Group**
     - https://groups.google.com/forum/#!forum/riemann-users
 
-  [riemann.config documentation]
+  **riemann.config documentation**
     - http://aphyr.github.com/riemann/api/riemann.config.html
 
-  [Riemann HowTo]
+  **Riemann HowTo**
     - http://riemann.io/howto.html
 
-  [Amara metrics server - a similar Vagrant script]
+  **Amara metrics server - a similar Vagrant repo**
     - https://github.com/pculture/amara-metrics
     - http://labs.amara.org/2012-07-16-metrics.html
 
-  [baby steps - clojure repl and sharing your riemann.config]
-    - https://groups.google.com/forum/#!topic/riemann-users/IPns8nUQiQc
-
-  [Application specific host grouping in Riemann-dash]
+  **Application specific host grouping in Riemann-dash**
     - https://gist.github.com/aaronfeng/4583640
 
-
-  https://github.com/synthesist/panoptimon/wiki/Setup-example-with-riemann

@@ -11,7 +11,8 @@
 
 (let [client (tcp-client :host "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>")
       ; Keep events for 5 minutes by default
-      index (default :ttl 300 (update-index (index)))]
+      index (default :ttl 300 (update-index (index)))
+      hosts (atom #{})]
 
   (streams
     ;(with {:metric_f 1 :host nil :state "ok" :service "events/sec"}
@@ -25,15 +26,14 @@
     (expired
       (fn [event] (info "expired" event)))
 
-    ; https://gist.github.com/aaronfeng/4583640 --> not working for me...
-    ; (let [hosts (atom #{})]
-    ;   (fn [event]
-    ;     (swap! hosts conj (:host event))
-    ;     (prn :hosts @hosts)
-    ;     (index {:service "unique hosts"
-    ;             :time (unix-time)
-    ;             :metric (count @hosts)})))
+
+    ; (fn [event] ;; pass the event through a function that:
+    ;   (swap! hosts conj (:host event)) ;; adds the event host into the host set
+    ;   (prn :hosts @hosts) ;; prints out the host set
+    ;   (index {:service "unique hosts" ;; indexes the count
+    ;           :time (unix-time)
+    ;           :metric (count @hosts)})))
+
+    ;; index everything
     index
 ))
-
-
