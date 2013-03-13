@@ -7,4 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 4567, 4567 # dashboard
   config.vm.forward_port 5555, 5555, { :protocol => "udp"} # riemann server
   config.vm.forward_port 5556, 5556 # riemann server: Websocket
+
+  # give VM more ram
+  config.vm.customize ["modifyvm", :id, "--memory", 1024]
 end
