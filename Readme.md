@@ -55,7 +55,6 @@
 ![Help Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/help_screenshot.png)
 
 
-
 ## Credits
 
   - Kyle Kingsbury - the Riemann author
@@ -72,3 +71,26 @@
 [Vagrant]: http://vagrantup.com
 [VirtualBox]: https://www.virtualbox.org/
 [Riemann]: http://riemann.io
+
+
+
+## Resources
+
+  [Riemann-Users Group]
+    - https://groups.google.com/forum/#!forum/riemann-users
+
+  [riemann.config documentation]
+    - http://aphyr.github.com/riemann/api/riemann.config.html
+
+  [Amara metrics server - a similar Vagrant script]
+    - https://github.com/pculture/amara-metrics
+    - http://labs.amara.org/2012-07-16-metrics.html
+
+  [baby steps - clojure repl and sharing your riemann.config]
+    - https://groups.google.com/forum/#!topic/riemann-users/IPns8nUQiQc
+
+  [Application specific host grouping in Riemann-dash]
+    - https://gist.github.com/aaronfeng/4583640
+
+
+  https://github.com/synthesist/panoptimon/wiki/Setup-example-with-riemann
