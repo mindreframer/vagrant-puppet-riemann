@@ -60,9 +60,9 @@
                       "type": "Grid"
                     },
                     {
-                      "title": "Disk & Memory",
+                      "title": "Uniq Hosts",
                       "weight": 0.25,
-                      "query": "((service =~ \"disk%\") or (service =~ \"memory%\")) and (state != \"ok\")",
+                      "query": "(service = \"unique hosts\")",
                       "type": "Gauge"
                     }
                   ],
@@ -75,7 +75,7 @@
                       "title": "Disk & Memory",
                       "weight": 1,
                       "max": "all",
-                      "query": "((service =~ \"disk%\") or (service =~ \"memory%\")) and (state != \"ok\")",
+                      "query": "((service =~ \"disk%\") or (service =~ \"memory%\")) and (host != \"precise64\")",
                       "type": "Grid"
                     }
                   ],
