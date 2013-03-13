@@ -52,6 +52,10 @@
     $ riemann-simulator
 
 
+![Dashboard Blinking](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/dashboard_blinking.gif)
+
+
+
 ## Playing with Dashboard
 
     # press `?` to have the overview of available shortcuts
