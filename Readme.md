@@ -65,9 +65,9 @@
 
 ## Important files to play with:
 
-    - [puppet/modules/riemann/templates/server/riemann.config.erb](https://github.com/mindreframer/vagrant-puppet-riemann/blob/master/puppet/modules/riemann/templates/server/riemann.config.erb) -> riemann server
-    - [puppet/modules/riemann/templates/dashboard/config.json.erb](https://github.com/mindreframer/vagrant-puppet-riemann/blob/master/puppet/modules/riemann/templates/dashboard/config.json.erb) -> dashboard
-    - [puppet/modules/riemann/templates/simulators/riemann-simulator.erb](https://github.com/mindreframer/vagrant-puppet-riemann/blob/master/puppet/modules/riemann/templates/simulators/riemann-simulator.erb) -> simulator script
+  - [server/riemann.config.erb](https://github.com/mindreframer/vagrant-puppet-riemann/blob/master/puppet/modules/riemann/templates/server/riemann.config.erb) -> riemann server
+  - [dashboard/config.json.erb](https://github.com/mindreframer/vagrant-puppet-riemann/blob/master/puppet/modules/riemann/templates/dashboard/config.json.erb) -> dashboard
+  - [simulators/riemann-simulator.erb](https://github.com/mindreframer/vagrant-puppet-riemann/blob/master/puppet/modules/riemann/templates/simulators/riemann-simulator.erb) -> simulator script
 
 
 ## Credits
