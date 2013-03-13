@@ -48,6 +48,10 @@
     $ riemann-simulator -s web
 
 
+    # simulate all traffic
+    $ riemann-simulator
+
+
 ## Playing with Dashboard
 
     # press `?` to have the overview of available shortcuts
