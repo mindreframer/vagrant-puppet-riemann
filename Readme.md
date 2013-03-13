@@ -82,6 +82,9 @@
   [riemann.config documentation]
     - http://aphyr.github.com/riemann/api/riemann.config.html
 
+  [Riemann HowTo]
+    - http://riemann.io/howto.html
+
   [Amara metrics server - a similar Vagrant script]
     - https://github.com/pculture/amara-metrics
     - http://labs.amara.org/2012-07-16-metrics.html
