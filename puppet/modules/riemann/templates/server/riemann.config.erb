@@ -25,19 +25,15 @@
     (expired
       (fn [event] (info "expired" event)))
 
+    ; https://gist.github.com/aaronfeng/4583640 --> not working for me...
+    ; (let [hosts (atom #{})]
+    ;   (fn [event]
+    ;     (swap! hosts conj (:host event))
+    ;     (prn :hosts @hosts)
+    ;     (index {:service "unique hosts"
+    ;             :time (unix-time)
+    ;             :metric (count @hosts)})))
     index
 ))
 
-; https://gist.github.com/aaronfeng/4583640 --> not working for me...
-(let [index (default :ttl 300 (update-index (index)))]
-    (streams
-      prn
-      index))
 
-(let [hosts (atom #{})]
-  (fn [event]
-    (swap! hosts conj (:host event))
-    (prn :hosts @hosts)
-    (index {:service "unique hosts"
-            :time (unix-time)
-            :metric (count @hosts)})))
