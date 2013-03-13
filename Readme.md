@@ -52,8 +52,21 @@
 
     # press `?` to have the overview of available shortcuts
 
-![Dashboard Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/help_screenshot.png)
+![Help Screenshot](https://raw.github.com/mindreframer/vagrant-puppet-riemann/master/pics/help_screenshot.png)
 
+
+
+## Credits
+
+  - Kyle Kingsbury - the Riemann author
+  - Yukihiro Matsumoto - for Ruby
+  - Rich Hickey - for Clojure
+  - Linus Torvalds - for Linux
+  - Mitchell Hashimoto - the Vagrant author
+  - Luke Kanies - the Puppet author
+  - Oracle *cough*, for keeping VirtualBox opensource
+  - Oracle *cough*, for keeping Java 7 free
+  - Alex Dergachev - GIF-Screencast for free on OSX: https://gist.github.com/dergachev/4627207
 
 
 [Vagrant]: http://vagrantup.com
