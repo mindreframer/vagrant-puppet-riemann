@@ -85,7 +85,7 @@ class Simulator
     [:cpu, :disk, :memory].each do |service|
       report_pct service, (rand(100)+1)/100.0, ""
     end
-    alert(:load, (rand(10), ""))
+    report_value(:load, rand(10), "")
     # cpu
     # load
     # disk
@@ -109,6 +109,18 @@ class Simulator
         alert service, :warning, fraction, "#{sprintf("%.2f", fraction * 100)}% #{report}"
       else
         alert service, :ok, fraction, "#{sprintf("%.2f", fraction * 100)}% #{report}"
+      end
+    end
+  end
+
+  def self.report_value(service, metric, report)
+    if metric
+      if metric > limits[service][:critical]
+        alert service, :critical, metric, "#{sprintf("%.2f", metric)}% #{report}"
+      elsif metric > limits[service][:warning]
+        alert service, :warning, metric, "#{sprintf("%.2f", metric )}% #{report}"
+      else
+        alert service, :ok, metric, "#{sprintf("%.2f", metric)}% #{report}"
       end
     end
   end
