@@ -18,7 +18,7 @@
 
 ## Requirements
   - [VirtualBox]
-  - [Vagrant]
+  - min. [Vagrant] 1.1
 
 
 ## Installation
