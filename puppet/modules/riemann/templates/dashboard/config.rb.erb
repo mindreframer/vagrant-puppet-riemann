@@ -1,4 +1,5 @@
 #config[:client][:host] = '<%= scope.lookupvar('riemann::params::riemann_server_ip') %>'
 
+set :bind, '0.0.0.0'
 set :port, 4567 # HTTP server
 config[:ws_config] = 'config/config.json' # Specify custom workspace config
