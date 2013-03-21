@@ -49,7 +49,7 @@ class riemann::download{
                 wget $riemann::params::url && \
                 tar xvfj $riemann::params::file  && \
                 ln -s /opt/$riemann::params::folder /opt/riemann",
-    unless => "test -e /opt/riemann/bin/riemann"
+    unless => "test -e /opt/riemann/bin/riemann && ls -la /opt/riemann|grep $riemann::params::version"
   }
 }
 
