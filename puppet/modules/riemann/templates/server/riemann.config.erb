@@ -9,10 +9,23 @@
 
 (periodically-expire 10)
 
+
+
 (let [client (tcp-client :host "<%= scope.lookupvar('riemann::params::riemann_server_ip') %>")
       ; Keep events for 5 minutes by default
       index (default :ttl 300 (update-index (index)))
       hosts (atom #{})]
+
+  ; email to mailcatcher
+  (def email (mailer {:host "127.0.0.1" :port 1025 :from "riemann@localhost.dev"}))
+
+  ; this will send mostly 5 mails, then aggregate for 5 minutes (300 seconds)
+  (def tell-ops
+    ; store max 1000 per hour
+   (throttle 1000 3600
+      ; send max 10 mails per 5 minutes
+      (rollup 10 300
+        (email "roman.heinrich@gmail.com"))))
 
   (streams
     ;(with {:metric_f 1 :host nil :state "ok" :service "events/sec"}
@@ -21,6 +34,18 @@
     (where (service #"^per")
       (percentiles 5 [0 0.5 0.95 0.99 1]
         index))
+
+
+    ; email all critial events
+    (where (state "critical") tell-ops)
+    ; all errors
+    (where (state "error") tell-ops)
+    ; all tags exception
+    (tagged "exception" tell-ops)
+
+    ; if something changed state from OK -> tell me
+    (changed :state {:init "ok"} tell-ops)
+
 
     ; Log expired events.
     (expired
