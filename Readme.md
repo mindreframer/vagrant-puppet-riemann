@@ -13,6 +13,7 @@
   - Riemann Tools
   - Riemann Health Daemon, that will send every 10 seconds cpu/memory/load/disk status to Riemann server
   - Ports 5555 (riemann-server), 5556(UDP for riemann) and 4567 (dashboard) will be forwarded
+  - Mailcatcher to inspect the mails from Riemann (on localhost)
 
 
 
@@ -32,6 +33,9 @@
 
     # ssh into your VM
     $ vagrant ssh
+
+    # open browser at http://localhost:1080/ (mailcatcher)
+    # open browser at http://localhost:4567/ (dashboard)
 
 
 ## Run Puppet, after you have changed modules
