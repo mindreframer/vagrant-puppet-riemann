@@ -4,5 +4,6 @@ node default{
   -> class{"riemann::health":}
   -> class{"riemann::dashboard":}
   -> class{"riemann::simulators":}
+  -> class{"mailcatcher":}
   -> class{"leiningen":}
 }
