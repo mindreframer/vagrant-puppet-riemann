@@ -103,6 +103,9 @@
 
   **Riemann HowTo**
     - http://riemann.io/howto.html
+    
+  **Riemann streams intro**
+    - http://rrees.me/2013/04/20/getting-started-with-riemann-stream-processing/
 
   **Amara metrics server - a similar Vagrant repo**
     - https://github.com/pculture/amara-metrics
