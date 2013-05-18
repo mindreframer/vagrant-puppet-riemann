@@ -1,5 +1,6 @@
 ; vim: filetype=clojure
 ; http://riemann.io/api/riemann.server.html
+; https://github.com/pculture/amara-metrics/blob/master/modules/riemann/files/riemann.config (example)
 
 (logging/init :file "/var/log/riemann.log")
 
@@ -16,16 +17,21 @@
       index (default :ttl 300 (update-index (index)))
       hosts (atom #{})]
 
+
+
   ; email to mailcatcher
   (def email (mailer {:host "127.0.0.1" :port 1025 :from "riemann@localhost.dev"}))
 
   ; this will send mostly 5 mails, then aggregate for 5 minutes (300 seconds)
   (def tell-ops
-    ; store max 1000 per hour
-   (throttle 1000 3600
+    ; store max 100000 per hour
+   (throttle 100000 3600
       ; send max 10 mails per 5 minutes
-      (rollup 10 300
+      (rollup 10 60
         (email "roman.heinrich@gmail.com"))))
+
+  ; graphite
+  ;(def graph (graphite {:host "my.graphite.server"}))
 
   (streams
     ;(with {:metric_f 1 :host nil :state "ok" :service "events/sec"}
@@ -45,6 +51,13 @@
 
     ; if something changed state from OK -> tell me
     (changed :state {:init "ok"} tell-ops)
+
+
+    ; (where (tagged "exception")
+    ;   (with :metric 1
+    ;     (by :service
+    ;       (adjust [:service (str " exception rate")]
+    ;         (rate 10 index graph)))))
 
 
     ; Log expired events.

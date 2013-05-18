@@ -114,3 +114,6 @@
   **Application specific host grouping in Riemann-dash**
     - https://gist.github.com/aaronfeng/4583640
 
+  **Guardians Config**
+    - https://github.com/guardian/riemann-config
+
